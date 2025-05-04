@@ -1,0 +1,8 @@
+langchain
+langchain-google-genai
+python-dateutil
+pydantic
+faiss-cpu
+langchain-community
+python-dotenv
+langchain-core
