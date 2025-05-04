@@ -16,8 +16,7 @@
 7. [Core Components](#core-components)
 8. [Troubleshooting](#troubleshooting)
 9. [Roadmap](#roadmap)
-10. [Contributing](#contributing)
-11. [License](#license)
+
 
 ## Project Overview
 A sophisticated AI assistant combining:
@@ -25,8 +24,27 @@ A sophisticated AI assistant combining:
 - **Appointment Scheduling**: Natural language booking system
 - **Data Validation**: Automatic verification of user inputs
 
+## Features
+
+### 📚 **Document Intelligence**
+| Feature | Description | Example |
+|---------|-------------|---------|
+| **Multi-Format Support** | Process PDFs & web URLs | `policy.pdf`, `https://docs.example.com` |
+| **Semantic Search** | Find answers using meaning, not just keywords | _"What's the late fee policy?"_ → Shows exact clause |
+| **Citation Tracking** | Identify source pages/sections | _"From page 12 of the policy..."_ |
+
+### 📅 **Appointment Management**
+| Feature | Description | Tech Used |
+|---------|-------------|-----------|
+| **Natural Language Dates** | Understand casual time references | `"next Tuesday at 3"` → `2024-06-18 15:00` |
+| **Multi-Step Booking** | Guided info collection | Name → Phone → Email → Confirm |
+| **Calendar Sync** | (Coming Soon) | Google Calendar API |
+
+### 🛡️ **Data Validation**
 ```python
-# Sample initialization
-from chatbot import Chatbot
-bot = Chatbot("policy.pdf")
-response = bot.chat("What's the warranty period?")
+# Example validation rules
+class UserInfo(BaseModel):
+    email: EmailStr
+    phone: constr(regex=r"^\d{10}$")  # 10 digits
+    date: datetime = Field(gt=datetime.now())  # Future dates
+```
