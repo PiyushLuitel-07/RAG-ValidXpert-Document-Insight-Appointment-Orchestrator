@@ -34,7 +34,7 @@ A sophisticated AI assistant combining:
 class UserInfo(BaseModel):
     name: str
     phone: str
-    email: EmailStr
+    email: EmailStr   # A emailstr datatype provided by Pydantic
     appointment_date: datetime
     
     @validator('phone')
@@ -50,3 +50,35 @@ class UserInfo(BaseModel):
             raise ValueError("Appointment date must be in the future")
         return v
 ```
+
+## Project File Structure
+
+```bash
+.
+├── app/                   # Main application code
+│   ├── main.py            # Entry point for the chatbot application
+│   ├── chatbot.py         # Core chatbot logic and agent setup
+│   ├── document_qa.py     # Document question-answering system
+│   ├── appointment.py     # Appointment scheduling functionality
+│   └── models.py          # Data models and validation schemas
+│
+├── data/                  # Data storage
+│   └── documents/         # Directory for PDF/document storage
+│       └── policy.pdf     # Example document (add your files here)
+│
+├── tests/                 # Test cases
+│   ├── test_chatbot.py    # Unit tests for chatbot functionality
+# │   ├── test_document_qa.py # Document QA system tests
+# │   └── test_appointment.py # Appointment system tests
+│
+├── .env                   # Environment variables
+│   # Example contents:
+│   # GOOGLE_API_KEY=api_key_here
+│   # DOCUMENT_PATH=data/documents/doc.pdf
+│
+└── requirements.txt       # Python dependencies
+│   # Core requirements:
+│   # langchain
+│   # langchain-google-genai
+│   # python-dotenv
+│   # pydantic
