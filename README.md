@@ -64,21 +64,80 @@ class UserInfo(BaseModel):
 │
 ├── data/                  # Data storage
 │   └── documents/         # Directory for PDF/document storage
-│       └── policy.pdf     # Example document (add your files here)
+│       └── doc.pdf        # Example document (add your files here)
 │
 ├── tests/                 # Test cases
 │   ├── test_chatbot.py    # Unit tests for chatbot functionality
-# │   ├── test_document_qa.py # Document QA system tests
-# │   └── test_appointment.py # Appointment system tests
 │
 ├── .env                   # Environment variables
-│   # Example contents:
-│   # GOOGLE_API_KEY=api_key_here
-│   # DOCUMENT_PATH=data/documents/doc.pdf
+    │     GOOGLE_API_KEY=api_key_here
+    │     DOCUMENT_PATH=data/documents/doc.pdf
 │
 └── requirements.txt       # Python dependencies
-│   # Core requirements:
-│   # langchain
-│   # langchain-google-genai
-│   # python-dotenv
-│   # pydantic
+    │   Core requirements:
+    │   langchain
+    │   langchain-google-genai
+    │   python-dotenv
+    │   pydantic
+```
+## Workflow
+<div align="center">
+  <img src="working.png" alt="Workflow" width="600">
+</div>
+
+## 🚀 Example Usage
+
+### 1. Starting the Chatbot
+```bash
+# Run with default document
+python app/main.py
+# Specify a different PDF
+python app/main.py --document data/documents/document_example.pdf
+```
+
+## Document Q&A Examples
+```bash
+User: What is the refund policy?
+Bot: According to section 4.2, refunds are allowed within 30 days of purchase...
+
+User: Show me the warranty details
+Bot: The warranty covers manufacturing defects for 24 months:
+     - Parts and labor included
+     - Excludes accidental damage
+     - Requires proof of purchase
+```
+
+## Appointment Booking Flow
+```bash
+User: I need to schedule a service appointment
+Bot: When would you like to schedule? 
+
+User: Next Thursday at 2pm
+Bot: Got it. Please provide your full name.
+
+User: Alex Johnson
+Bot: Thank you! Your phone number?
+
+User: 555-789-1234
+Bot: Finally, your email address?
+
+User: alex@example.com
+Bot: ✅ Appointment Confirmed:
+     📅 Date: Thu, Jun 20 at 14:00
+     👤 Name: Alex Johnson
+     📞 Phone: 555-789-1234
+     📧 Email: alex@example.com
+```
+
+## Validation Examples
+```bash
+User: Book for yesterday at 5pm
+Bot: ❌ Error: Date must be in the future
+
+User: My email is alex@
+Bot: ❌ Error: Invalid email format
+
+User: Phone is 1234
+Bot: ❌ Error: Phone must be 10 digits
+```
+
